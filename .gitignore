@@ -6,3 +6,4 @@
 *.peda
 *.gdb
 *.out
+my_runner
