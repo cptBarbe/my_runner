@@ -8,8 +8,6 @@
 #ifndef MY_H_
 #define MY_H_
 
-#define EXIT_SUCCESS 0
-#define EXIT_FAILURE 84
 #include <unistd.h>
 
 void my_putchar(char);
