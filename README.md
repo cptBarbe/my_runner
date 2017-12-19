@@ -19,4 +19,4 @@ chmod +x install_CSFML.sh
 ```
 
 # Screenshot preview
-![example](http://www.noelshack.com/2017-51-2-1513695623-preview-window.png)
+![example](http://image.noelshack.com/fichiers/2017/51/2/1513695623-preview-window.png)
