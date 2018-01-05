@@ -8,8 +8,12 @@
 #include "my.h"
 #include "runner.h"
 
-int main(void)
+int main(/*int argc, char **argv, char **env*/)
 {
-	my_runner();
+	texture_t *texture = set_textures();
+	object_t *obj = set_objects();
+
+	if (my_runner(texture, obj) == FAILURE)
+		return (FAILURE);
 	return (SUCCESS);
 }

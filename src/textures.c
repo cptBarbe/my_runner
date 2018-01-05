@@ -21,6 +21,15 @@ texture_t *set_textures(void)
 	texture->tex_buildings = sfTexture_createFromFile("./assets/buildings.png",
 							 NULL);
 	texture->sp_buildings = sfSprite_create();
+	texture->tex_logo = sfTexture_createFromFile("./assets/logo.png",
+							NULL);
+	texture->sp_logo = sfSprite_create();
+	texture->tex_trump = sfTexture_createFromFile("./assets/Trump.png",
+							NULL);
+	texture->sp_trump = sfSprite_create();
+	texture->tex_mist = sfTexture_createFromFile("./assets/mist.png",
+							NULL);
+	texture->sp_mist = sfSprite_create();
 	return (texture);
 }
 

@@ -5,41 +5,59 @@
 ** my_runner
 */
 
-#include "my.h"
+//#include "my.h"
 #include "runner.h"
 
-int get_events(object_t *obj)
+void check_quit(object_t *obj)
 {
-	while (sfRenderWindow_pollEvent(obj->window, &obj->event)) {
-		if (obj->event.type == sfEvtClosed)
-			sfRenderWindow_close(obj->window);
-	}
-        return (SUCCESS);
+	if (obj->event.type == sfEvtClosed)
+		sfRenderWindow_close(obj->window);
 }
 
-int my_runner(void)
+int menu(texture_t *texture, object_t *obj)
 {
-	texture_t *texture = set_textures();
-	object_t *obj = set_objects();
+	sfRenderWindow_clear(obj->window, sfBlack);
+	sfRenderWindow_drawSprite(obj->window, texture->sp_back, NULL);
+	sfRenderWindow_drawSprite(obj->window, texture->sp_city, NULL);
+	sfRenderWindow_drawSprite(obj->window, texture->sp_buildings, NULL);
+	sfRenderWindow_drawSprite(obj->window, texture->sp_mist, NULL);
+	sfRenderWindow_drawSprite(obj->window, texture->sp_logo, NULL);
+	sfRenderWindow_display(obj->window);
+	sfSprite_setPosition(texture->sp_logo, texture->logo_position);
+	check_quit(obj);
+	return ((obj->event.type == sfEvtMouseButtonPressed) ? 42 : SUCCESS);
+}
+
+int game(texture_t *texture, object_t *obj, int i)
+{
+	i++;
+	check_quit(obj);
+	draw(obj->window, texture);
+	obj->time = sfClock_getElapsedTime(obj->cl);
+	obj->sec = sfTime_asSeconds(obj->time);
+	check_time(obj, texture);
+	sfSprite_setTextureRect(texture->sp_trump, *texture->ar);
+	//if (score == 142)
+	//	return (42);
+	return (SUCCESS);
+}
+
+int my_runner(texture_t *texture, object_t *obj)
+{
 	sfVideoMode mode = {800, 600, 60};
+	int i = 0;
+	int state = 0;
 
 	set_assets(texture, obj, mode);
 	if (!obj->window)
 		return (FAILURE);
 	while (sfRenderWindow_isOpen(obj->window)) {
-		get_events(obj);
-		draw(obj->window, texture);
-		if (obj->time > 0.1) {
-			texture->city_position.x -= 1;
-			texture->buildings_position.x -= 2;
-			sfClock_restart(obj->cl);
-		}
-		if (texture->city_position.x == -800)
-			texture->city_position.x = 0;
-		sfSprite_setPosition(texture->sp_city,
-					texture->city_position);
-		sfSprite_setPosition(texture->sp_buildings,
-					texture->buildings_position);
+		do {
+			if (state == 0 && menu(texture, obj) == 42)
+				state = 1;
+			if (state == 1 && game(texture, obj, i) == 42)
+				state = 0;
+		} while (sfRenderWindow_pollEvent(obj->window, &obj->event));
 	}
 	sfRenderWindow_destroy(obj->window);
 	free(texture);
