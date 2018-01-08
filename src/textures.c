@@ -30,6 +30,9 @@ texture_t *set_textures(void)
 	texture->tex_mist = sfTexture_createFromFile("./assets/mist.png",
 							NULL);
 	texture->sp_mist = sfSprite_create();
+	texture->tex_moon = sfTexture_createFromFile("./assets/moon.png",
+							NULL);
+	texture->sp_moon = sfSprite_create();
 	return (texture);
 }
 
@@ -38,4 +41,14 @@ object_t *set_objects(void)
 	object_t *obj = malloc(sizeof(object_t));
 
 	return (obj);
+}
+
+text_t *set_text(void)
+{
+	text_t *text = malloc(sizeof(text_t));
+
+	text->text = sfText_create();
+	text->font = sfFont_createFromFile("./assets/fonts/game_over.ttf");
+	sfText_setFont(text->text, text->font);
+	return (text);
 }

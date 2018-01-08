@@ -8,12 +8,16 @@
 #include "my.h"
 #include "runner.h"
 
-int main(/*int argc, char **argv, char **env*/)
+int main(int argc, char **argv, char **env)
 {
-	texture_t *texture = set_textures();
-	object_t *obj = set_objects();
+	(void)argc;
+	(void)argv;
 
-	if (my_runner(texture, obj) == FAILURE)
+	if (*env == NULL) {
+		my_puterr("Error: env variables cannot be loaded\n");
+		return (FAILURE);
+	}
+	if (my_runner() == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }
