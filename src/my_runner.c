@@ -5,7 +5,6 @@
 ** my_runner
 */
 
-//#include "my.h"
 #include "runner.h"
 
 void check_quit(object_t *obj)
@@ -49,12 +48,10 @@ int game(texture_t *texture, object_t *obj, text_t *text)
 	sfText_setPosition(text->text, text->text_position);
 	text->text_position.x = 420;
 	text->text_position.y = 420;
-	//if (score == 142)
-	//	return (42);
 	return (SUCCESS);
 }
 
-int my_runner()
+int my_runner(void)
 {
 	texture_t *texture = set_textures();
 	object_t *obj = set_objects();
@@ -64,15 +61,15 @@ int my_runner()
 	int state = 0;
 
 	set_assets(texture, obj, mode);
-	if (!obj->window || !music || !texture || !obj)
+	if (!obj->window || !music || !texture || !obj || !texture)
 		return (FAILURE);
-	//sfMusic_play(music);
+	sfMusic_play(music);
 	while (sfRenderWindow_isOpen(obj->window)) {
 		do {
-			if (state == 0 && menu(texture, obj, text) == 42)
-				state = (state == 0 && menu(texture, obj, text) == 42) ? 1 : 0;
-			if (state == 1 && game(texture, obj, text) == 42)
-				state = 0;
+			state = (state == 0 && menu(texture, obj, text) == 42)
+				? 1 : state;
+			state = (state == 1 && game(texture, obj, text) == 42)
+				? 0 : state;
 		} while (sfRenderWindow_pollEvent(obj->window, &obj->event));
 	}
 	clean(texture, obj, music);

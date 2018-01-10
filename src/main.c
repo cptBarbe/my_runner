@@ -1,8 +1,8 @@
 /*
 ** EPITECH PROJECT, 2017
-** my_runner_bootstrap
+** main
 ** File description:
-** my_runner_bootstrap
+** main
 */
 
 #include "my.h"
@@ -17,7 +17,9 @@ int main(int argc, char **argv, char **env)
 		my_puterr("Error: env variables cannot be loaded\n");
 		return (FAILURE);
 	}
-	if (my_runner() == FAILURE)
+	if (my_runner() == FAILURE) {
+		my_puterr("Error: the game cannot be run\n");
 		return (FAILURE);
+	}
 	return (SUCCESS);
 }

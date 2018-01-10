@@ -5,7 +5,6 @@
 ** display
 */
 
-#include "my.h"
 #include "runner.h"
 
 void refresh_position(texture_t *texture)

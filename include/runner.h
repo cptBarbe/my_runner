@@ -31,7 +31,7 @@ typedef struct texture
 	sfTexture *tex_mist;
 	sfSprite *sp_mist;
 	sfTexture *tex_moon;
-	sfSprite * sp_moon;
+	sfSprite *sp_moon;
 	sfVector2f city_position;
 	sfVector2f buildings_position;
 	sfVector2f logo_position;
@@ -60,7 +60,7 @@ typedef struct text
 object_t *set_objects(void);
 texture_t *set_textures(void);
 text_t *set_text(void);
-int my_runner();
+int my_runner(void);
 void draw(sfRenderWindow *, texture_t *);
 void set_assets(texture_t *, object_t *, sfVideoMode);
 void move_positions(texture_t *);

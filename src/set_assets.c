@@ -5,7 +5,6 @@
 ** set_assets
 */
 
-#include "my.h"
 #include "runner.h"
 
 void set_assets(texture_t *texture, object_t *obj, sfVideoMode mode)
@@ -15,7 +14,7 @@ void set_assets(texture_t *texture, object_t *obj, sfVideoMode mode)
 	texture->ar = malloc(sizeof(sfIntRect));
 	texture->ar->left = 0;
 	texture->ar->top = 0;
-	texture->ar->width = 57;
+	texture->ar->width = 64;
 	texture->ar-> height = 76;
 	sfSprite_setTexture(texture->sp_back, texture->tex_back, sfTrue);
 	sfSprite_setTexture(texture->sp_city, texture->tex_city, sfTrue);
@@ -34,7 +33,7 @@ void set_assets(texture_t *texture, object_t *obj, sfVideoMode mode)
 void move_positions(texture_t *texture)
 {
 	texture->city_position.x -= 2;
-	texture->buildings_position.x -= 5;
+	texture->buildings_position.x -= 4;
 	texture->mist_position.x -= 7;
 	texture->moon_position.x -= 0.05;
 	if (texture->moon_position.x <= -800)
@@ -54,13 +53,11 @@ void check_time(object_t *obj, texture_t *texture)
 	if (obj->sec > 0.03) {
 		if (status == 0) {
 			texture->ar->left += 100;
-			if (texture->ar->left >= 500)
-				status = 1;
+			status = (texture->ar->left >= 500) ? 1 : 0;
 		}
 		if (status == 1) {
 			texture->ar->left -= 100;
-			if (texture->ar->left <= 0)
-				status = 0;
+			status = (texture->ar->left <= 0) ? 0 : 1;
 		}
 		move_positions(texture);
 		sfClock_restart(obj->cl);
