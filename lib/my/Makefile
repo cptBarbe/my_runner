@@ -5,8 +5,10 @@
 ## makefile
 ##
 
-SRC	=	my_puterr.c			\
-		my_strlen.c			\
+SRC	=	my_puterr.c	\
+		my_putstr.c	\
+		my_strlen.c	\
+		my_strcmp.c	\
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -20,9 +22,8 @@ $(NAME) : $(OBJ)
 
 clean :
 	rm -f $(OBJ)
-	rm -f .*~
 	rm -f *~
-	rm -f \#*
+	rm -f *\#*
 
 fclean : clean
 	rm -f ../$(NAME)

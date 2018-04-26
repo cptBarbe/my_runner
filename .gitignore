@@ -1,9 +1,16 @@
+# Backup files #
+################
 *~
-\#*
-.\#*
+*#*
+
+# Illegal/useless files #
+#########################
 *.o
 *.a
-*.peda
-*.gdb
 *.out
 my_runner
+
+# GDB files #
+#############
+*peda*
+*gdb*

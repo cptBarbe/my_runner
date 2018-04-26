@@ -23,11 +23,13 @@ void set_assets(texture_t *texture, object_t *obj, sfVideoMode mode)
 	sfSprite_setTexture(texture->sp_trump, texture->tex_trump, sfTrue);
 	sfSprite_setTexture(texture->sp_mist, texture->tex_mist, sfTrue);
 	sfSprite_setTexture(texture->sp_moon, texture->tex_moon, sfTrue);
-	sfRenderWindow_setFramerateLimit(obj->window, 60);
+	sfRenderWindow_setFramerateLimit(obj->window, FPS);
 	texture->logo_position.x = 206;
 	texture->logo_position.y = 42;
 	texture->trump_position.y = 500;
 	texture->trump_position.x = 42;
+	texture->moon_position.y = 60;
+	texture->moon_position.x = 500;
 }
 
 void move_positions(texture_t *texture)
@@ -36,8 +38,8 @@ void move_positions(texture_t *texture)
 	texture->buildings_position.x -= 4;
 	texture->mist_position.x -= 7;
 	texture->moon_position.x -= 0.05;
-	if (texture->moon_position.x <= -800)
-		texture->moon_position.x = 400;
+	if (texture->moon_position.x <= -180)
+		texture->moon_position.x = 950;
 	if (texture->city_position.x <= -800)
 		texture->city_position.x = 0;
 	if (texture->buildings_position.x <= -1000)

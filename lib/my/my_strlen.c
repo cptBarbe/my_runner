@@ -9,9 +9,6 @@ int my_strlen(char const *str)
 {
 	int n = 0;
 
-	while (*str != '\0') {
-                str++;
-		n++;
-	}
+	while (str[n++] != '\0');
 	return (n);
 }

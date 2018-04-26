@@ -7,8 +7,9 @@
 
 #ifndef RUNNER_H_
 #define RUNNER_H_
-#define SUCCESS 0
-#define FAILURE 84
+#	define FPS	(60)
+#	define SUCCESS	(0)
+#	define FAILURE	(84)
 #include <SFML/Graphics.h>
 #include <SFML/System.h>
 #include <SFML/Audio.h>

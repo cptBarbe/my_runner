@@ -10,7 +10,8 @@
 void refresh_position(texture_t *texture)
 {
 	sfSprite_setPosition(texture->sp_city, texture->city_position);
-	sfSprite_setPosition(texture->sp_buildings, texture->buildings_position);
+	sfSprite_setPosition(texture->sp_buildings
+				, texture->buildings_position);
 	sfSprite_setPosition(texture->sp_trump, texture->trump_position);
 	sfSprite_setPosition(texture->sp_mist, texture->mist_position);
 	sfSprite_setPosition(texture->sp_moon, texture->moon_position);
