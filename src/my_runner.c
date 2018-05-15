@@ -70,7 +70,7 @@ int my_runner(void)
 	if (!obj->window || !music || !texture || obj == NULL ||
 	texture == NULL || text == NULL)
 		return (FAILURE);
-//	sfMusic_play(music);
+	sfMusic_play(music);
 	while (sfRenderWindow_isOpen(obj->window)) {
 		state = get_events(obj, state);
 		state = (state == 0 && menu(texture, obj, text) == 42)
